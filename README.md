@@ -21,13 +21,11 @@ Modul by měl implementovat:
      velikost hrací desky
    - `MazeGame` by měl obsahovat metodu `isFree`, která vrátí
      jestli na daném políčku je volno nebo zeď
-
    - `MazeGame` by mělo obsahovat metodu `getSolution`, která
       vrátí nějakou nejkratší cestu mezi začátkem a koncem
       jako objekt `MazePath`
-
-      - Pokud cesta neexistuje, vyvolá se výjimka
-- výjimku `MazeError`, která se vyvolá v neočekávan
+      - Pokud cesta neexistuje, vyvolá se výjimka `MazeError`
+- výjimku `MazeError`, která se vyvolá v neočekávaných situacích
 - objekt `MazePath`  umí vráti svoji délku (metoda `length`)
 - objekt `MazePath` poskytuje iterátor, který vrací postupně
   všechny projitá políčka
@@ -48,6 +46,8 @@ Pro řešení můžete použít libovovolné moduly (třeba pro BFS či
 Dijstrův algoritmus).  Pokud potřebujete nějaké speciální
 moduly, přidejte je prosím do `requirements.txt`
 
-Modul by měl projít testy. Pokud se všechno povede, tak zkusím 
-připravit i vizualizaci.
+Modul by měl projít dodanými testy. Pokud potřebujete něco otestovat, přidejte
+testy i do modulu. Kromě základních testů budu testovat i délku a validitu cesty.
+
+Pokud se všechno povede, tak zkusím připravit i nástroj na vizualizaci.
 
