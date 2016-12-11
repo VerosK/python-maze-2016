@@ -51,7 +51,25 @@ def test_create_from_string(data, width, height):
     assert game is not None
     assert type(game) is MazeGame
     assert game.getSize() == (width, height)
-    
+
+
+NO_DATA = "\n"
+NO_START = '#  E#'
+NO_END = '''
+#####
+#B  #
+#####
+'''
+TWO_STARTS = "#BEB#"
+MORE_ENDS = "#EEEE ##B"
+
+@pytest.mark.parametrize(
+    'data', [NO_DATA, NO_START, NO_END, TWO_STARTS, MORE_ENDS])
+def test_create_invalid_from_string(data):
+    "Invalid input should raise exception"
+    with pytest.raises(MazeError):
+        game = MazeGame.fromString(data)
+
 @pytest.mark.parametrize('data',
         [MICRO_MAZE, SMALL_MAZE, LARGE_MAZE])
 def test_can_pass(data):
