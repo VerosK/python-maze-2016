@@ -2,6 +2,7 @@
 from maze import MazeGame, MazePath, MazeError
 import pytest
 
+# Valid mazes
 MICRO_MAZE = '''B   E'''
 
 SMALL_MAZE = '''
@@ -73,36 +74,39 @@ def test_create_invalid_from_string(data):
 @pytest.mark.parametrize('data',
         [MICRO_MAZE, SMALL_MAZE, LARGE_MAZE])
 def test_can_pass(data):
-    "Test solution"
+    "Test solution exists"
     game = MazeGame.fromString(data)
     solution = game.getSolution()
     assert type(solution) is MazePath
-    assert solution.length() > 1
+    solution_length = solution.length()
+    assert solution_length > 1
 
 @pytest.mark.parametrize(
     'maze,expected_length',
     [
         (MICRO_MAZE, 5),
         (SMALL_MAZE, 12),
+        (LARGE_MAZE, 49),
     ])
 def test_length_validity(maze, expected_length):
     "Test solution length & validity"
     game = MazeGame.fromString(maze)
     solution = game.getSolution()
     assert type(solution) is MazePath
-    assert solution.length() == expected_length
+    solution_length = solution.length()
+    assert solution_length == expected_length
     #
     last_x,last_y = None,None
     start_position = game.getStart()
     end_position = game.getEnd()
     for x,y in solution:
         if last_x is None:
-            assert x,y == start_position
+            assert (x,y) == start_position
         else:
             step_length = abs(last_x-x) + abs(last_y-y)
             assert step_length == 1
         last_x,last_y = x,y
-    assert last_x,last_y == end_position
+    assert (last_x,last_y) == end_position
 
 
 @pytest.mark.parametrize('data', [DEAD_END_MAZE])
