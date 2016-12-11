@@ -26,11 +26,16 @@ Modul by měl implementovat:
    - `MazeGame` by mělo obsahovat metodu `getSolution`, která
       vrátí nějakou nejkratší cestu mezi začátkem a koncem
       jako objekt `MazePath`
-      - Pokud cesta neexistuje, vyvolá se výjimka `MazeError`
-- výjimku `MazeError`, která se vyvolá v neočekávaných situacích
+      - Pokud cesta neexistuje, vyvolá se výjimka `MazeError`          
 - objekt `MazePath`  umí vráti svoji délku (metoda `length`)
 - objekt `MazePath` poskytuje iterátor, který vrací postupně
   všechny projitá políčka
+
+- výjimku `MazeError`, která se vyvolá v neočekávaných situacích, například:
+    - pokud zkusíme vytvořit bludiště bez začátku
+    - pokud zkusíme vytvořit bludiště se dvěma východy
+    - pokud požádáme o vyhledání cesty a ta neexistuje
+
 
 ## Ukázka použití:
 
@@ -46,10 +51,9 @@ Modul by měl implementovat:
 
 Pro řešení můžete použít libovovolné moduly (třeba pro BFS či 
 Dijstrův algoritmus).  Pokud potřebujete nějaké speciální
-moduly, přidejte je prosím do `requirements.txt`
+moduly, přidejte je prosím do `requirements.txt`. Není to ale potřeba.  
 
 Modul by měl projít dodanými testy. Pokud potřebujete něco otestovat, přidejte
 testy i do modulu. Kromě základních testů budu testovat i délku a validitu cesty.
 
 Pokud se všechno povede, tak zkusím připravit i nástroj na vizualizaci.
-
