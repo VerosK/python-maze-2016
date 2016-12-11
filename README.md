@@ -21,6 +21,8 @@ Modul by měl implementovat:
      velikost hrací desky
    - `MazeGame` by měl obsahovat metodu `isFree`, která vrátí
      jestli na daném políčku je volno nebo zeď
+   - `MazeGame` by mělo obsahovat metody `getStart` a `getEnd`, 
+      které vrátí pozici vstupu a konce bludiště.
    - `MazeGame` by mělo obsahovat metodu `getSolution`, která
       vrátí nějakou nejkratší cestu mezi začátkem a koncem
       jako objekt `MazePath`

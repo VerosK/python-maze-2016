@@ -6,7 +6,7 @@ MICRO_MAZE = '''B   E'''
 
 SMALL_MAZE = '''
 ##########
-#    #   #
+#        #
 #  # # # #
 #B #   #E#
 ##########
@@ -55,6 +55,31 @@ def test_can_pass(data):
     assert type(solution) is MazePath
     assert solution.length() > 1
 
+@pytest.mark.parametrize(
+    'maze,expected_length',
+    [
+        (MICRO_MAZE, 5),
+        (SMALL_MAZE, 12),
+    ])
+def test_length_validity(maze, expected_length):
+    "Test solution length & validity"
+    game = MazeGame.fromString(maze)
+    solution = game.getSolution()
+    assert type(solution) is MazePath
+    assert solution.length() == expected_length
+    #
+    last_x,last_y = None,None
+    start_position = game.getStart()
+    end_position = game.getEnd()
+    for x,y in solution:
+        if last_x is None:
+            assert x,y == start_position
+        else:
+            step_length = abs(last_x-x) + abs(last_y-y)
+            assert step_length == 1
+        last_x,last_y = x,y
+    assert last_x,last_y == end_position
+
 @pytest.mark.parametrize('data', [DEAD_END_MAZE])
 def test_cant_pass(data):
     "Test maze with no solution"
@@ -62,4 +87,3 @@ def test_cant_pass(data):
 
     with pytest.raises(MazeError):
         solution = game.getSolution()
-    

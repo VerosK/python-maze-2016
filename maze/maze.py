@@ -16,7 +16,13 @@ class MazeGame(object):
 
     def getSize(self):
         "Vrati velikost bludiste"
-        return self.data.shape              
+        return self.data.shape
+
+    def getStart(self):
+        return (0,0)
+
+    def getEnd(self):
+        return (10, 10)
 
     def isFree(self, x, y):
         "Vrátí False jestli na pozici x,y chodba. Jinak vrací True"
