@@ -38,13 +38,19 @@ B   #    #
 ##########
 '''
 
-@pytest.mark.parametrize('data',
-        [MICRO_MAZE, SMALL_MAZE, LARGE_MAZE, DEAD_END_MAZE])
-def test_create_from_string(data):
+@pytest.mark.parametrize(
+    'data,width,height', [
+        (MICRO_MAZE, 5, 1),
+        (SMALL_MAZE, 10, 5),
+        (LARGE_MAZE, 27, 15),
+        (DEAD_END_MAZE, 10, 5)
+    ])
+def test_create_from_string(data, width, height):
     "Test creation from string"
     game = MazeGame.fromString(data)
     assert game is not None
     assert type(game) is MazeGame
+    assert game.getSize() == (width, height)
     
 @pytest.mark.parametrize('data',
         [MICRO_MAZE, SMALL_MAZE, LARGE_MAZE])
@@ -79,6 +85,7 @@ def test_length_validity(maze, expected_length):
             assert step_length == 1
         last_x,last_y = x,y
     assert last_x,last_y == end_position
+
 
 @pytest.mark.parametrize('data', [DEAD_END_MAZE])
 def test_cant_pass(data):
